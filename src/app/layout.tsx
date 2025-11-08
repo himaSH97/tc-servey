@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import Header from "~/components/header";
 import { ThemeProvider } from "~/providers/theme-provider";
+import { LanguageProvider } from "~/providers/language-provider";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -34,9 +35,11 @@ export default function RootLayout({
         className={`${interTight.variable} ${geistMono.variable} antialiased flex flex-col h-full`}
       >
         <ThemeProvider>
-          <Header />
-          <Toaster />
-          {children}
+          <LanguageProvider>
+            <Header />
+            <Toaster />
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

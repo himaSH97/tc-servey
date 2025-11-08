@@ -1,0 +1,154 @@
+{
+  "header": {
+    "title": "Tour connect"
+  },
+  "about": {
+    "whatIs": {
+      "title": "What is Tour connect?",
+      "description": "Tour connect is a revolutionary platform designed to empower tour guides and drivers across Sri Lanka. We bridge the gap between independent service providers and tourists seeking authentic, personalized experiences."
+    }
+  },
+  "hero": {
+    "availableIn": "available in Mid",
+    "successTitle": "You're on the waitlist",
+    "defaultTitle": "Join Tour connect",
+    "successDescription": "You've successfully secured your spot. We'll hit you up the moment it's your turn to dive in",
+    "defaultDescription": "Be among the first to experience Tour connect - the platform connecting tour guides and drivers with tourists. Join the waitlist to get notified when we launch.",
+    "scrollButton": "See what we offer",
+    "feedbackMessage": "We want to build something you'll love! Share your thoughts and help us understand what features matter most to you."
+  },
+  "benefits": {
+    "title": "Why Choose Tour connect?",
+    "subtitle": "Empowering tour guides and drivers with the tools they need to succeed",
+    "items": {
+      "pricing": {
+        "title": "Set Your Own Prices",
+        "description": "You're in complete control of what you charge. No fixed rates."
+      },
+      "noMiddlemen": {
+        "title": "No Middlemen",
+        "description": "Direct connection between tourists and service providers."
+      },
+      "earnings": {
+        "title": "Keep More Earnings",
+        "description": "Fair commission structure means more money in your pocket."
+      },
+      "flexible": {
+        "title": "Be Your Own Boss",
+        "description": "Flexible schedule - work when you want, where you want."
+      },
+      "reputation": {
+        "title": "Build Your Reputation",
+        "description": "Ratings and reviews help you grow your business and attract more tourists."
+      },
+      "payments": {
+        "title": "Secure Payments",
+        "description": "Safe, in-app payment system protects both you and your customers."
+      }
+    }
+  },
+  "form": {
+    "step": "Step",
+    "of": "of",
+    "continue": "Continue",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "step1": {
+      "title": "Welcome! Let's start with your email",
+      "placeholder": "your@email.com"
+    },
+    "step2": {
+      "title": "What's your name?",
+      "placeholder": "Your name"
+    },
+    "step3": {
+      "title": "What best describes you?",
+      "options": {
+        "driver": "Driver with a tourist vehicle",
+        "guide": "Tour guide",
+        "both": "Both",
+        "other": "Other"
+      },
+      "placeholderOther": "Please specify"
+    },
+    "step4": {
+      "title": "Would you be interested in using an online platform that connects you with tourists?",
+      "options": {
+        "yes": "Yes, definitely",
+        "maybe": "Maybe, depends on the details",
+        "no": "Not interested"
+      }
+    },
+    "step5": {
+      "title": "What features would be most useful to you? (Select all that apply)",
+      "options": {
+        "rides": "Tourist ride bookings",
+        "tours": "Tour guide bookings",
+        "realtime": "Real-time trip requests",
+        "pricing": "Ability to set my own prices",
+        "ratings": "Ratings and reviews",
+        "payments": "Secure in-app payments",
+        "other": "Other"
+      }
+    },
+    "step6": {
+      "title": "If the platform brings you customers, would you be willing to pay a fee for each confirmed booking?",
+      "options": {
+        "yes": "Yes",
+        "maybe": "Maybe, depends on the fee",
+        "no": "No"
+      }
+    },
+    "step7": {
+      "title": "What fee structure feels fair to you?",
+      "options": {
+        "flat": "Flat fee per booking (e.g., Rs. 500)",
+        "percentage": "Percentage of the booking value (e.g., 10%)",
+        "subscription": "Monthly subscription",
+        "other": "Other"
+      }
+    },
+    "step8": {
+      "title": "What percentage or amount would you personally be comfortable paying?",
+      "placeholder": "e.g., Rs. 500 or 10%"
+    },
+    "step9": {
+      "title": "On a scale of 1 to 5, how likely are you to actually use this platform if it works well?",
+      "subtitle": "1 = not at all likely, 5 = extremely likely"
+    },
+    "step10": {
+      "title": "Any additional comments, concerns, or suggestions?",
+      "subtitle": "This is optional",
+      "placeholder": "Share your thoughts..."
+    },
+    "success": {
+      "message": "Thank you for your interest! We'll be in touch soon.",
+      "button": "Submit another response"
+    },
+    "errors": {
+      "invalidEmail": "Please enter a valid email address",
+      "nameRequired": "Please enter your name",
+      "userTypeRequired": "Please select what best describes you",
+      "specifyRole": "Please specify your role",
+      "interestRequired": "Please select your level of interest",
+      "featuresRequired": "Please select at least one feature",
+      "optionRequired": "Please select an option",
+      "feeStructureRequired": "Please select a fee structure",
+      "specifyFeeStructure": "Please specify your preferred fee structure",
+      "amountRequired": "Please enter an amount you'd be comfortable with",
+      "likelihoodRequired": "Please rate your likelihood of using the platform"
+    },
+    "toast": {
+      "loading": "Submitting your response... 🚀",
+      "success": "Thank you for your response! 🎉",
+      "errorRateLimit": "You're doing that too much. Please try again later",
+      "errorEmail": "Failed to send email. Please try again 😢.",
+      "errorNotion": "Failed to save your details. Please try again 😢.",
+      "errorGeneral": "An error occurred. Please try again 😢."
+    }
+  },
+  "footer": {
+    "copyright": "Tour connect. All rights reserved."
+  }
+}
+

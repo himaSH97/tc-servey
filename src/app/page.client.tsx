@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 
+import About from "~/components/about";
 import Benefits from "~/components/benefits";
 import Faq from "~/components/faq";
 import Footer from "~/components/footer";
@@ -19,11 +20,10 @@ export function LandingPage({ waitlistPeople }: { waitlistPeople: number }) {
         className="fixed inset-0 z-50 pointer-events-none"
         manualstart={true}
       />
+
       <div className="flex flex-col items-center justify-center gap-6 p-4">
         <Hero waitlistPeople={waitlistPeople} />
       </div>
-
-      <Benefits />
 
       <Footer />
     </main>

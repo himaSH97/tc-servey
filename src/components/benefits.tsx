@@ -1,57 +1,57 @@
 "use client";
 
 import { motion } from "motion/react";
-
-const benefits = [
-  {
-    icon: "💰",
-    title: "Set Your Own Prices",
-    description: "You're in complete control of what you charge. No fixed rates.",
-  },
-  {
-    icon: "🤝",
-    title: "No Middlemen",
-    description: "Direct connection between tourists and service providers.",
-  },
-  {
-    icon: "📈",
-    title: "Keep More Earnings",
-    description: "Fair commission structure means more money in your pocket.",
-  },
-  {
-    icon: "⏰",
-    title: "Be Your Own Boss",
-    description: "Flexible schedule - work when you want, where you want.",
-  },
-  {
-    icon: "⭐",
-    title: "Build Your Reputation",
-    description: "Ratings and reviews help you grow your business and attract more tourists.",
-  },
-  {
-    icon: "🔒",
-    title: "Secure Payments",
-    description: "Safe, in-app payment system protects both you and your customers.",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function Benefits() {
+  const t = useTranslations("benefits");
+
+  const benefits = [
+    {
+      icon: "💰",
+      titleKey: "items.pricing.title",
+      descriptionKey: "items.pricing.description",
+    },
+    {
+      icon: "🤝",
+      titleKey: "items.noMiddlemen.title",
+      descriptionKey: "items.noMiddlemen.description",
+    },
+    {
+      icon: "📈",
+      titleKey: "items.earnings.title",
+      descriptionKey: "items.earnings.description",
+    },
+    {
+      icon: "⏰",
+      titleKey: "items.flexible.title",
+      descriptionKey: "items.flexible.description",
+    },
+    {
+      icon: "⭐",
+      titleKey: "items.reputation.title",
+      descriptionKey: "items.reputation.description",
+    },
+    {
+      icon: "🔒",
+      titleKey: "items.payments.title",
+      descriptionKey: "items.payments.description",
+    },
+  ];
   return (
-    <div id="benefits-section" className="py-14 sm:px-4 px-4">
+    <div id="benefits-section" className="py-4 sm:px-4 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-foreground mb-3">
-            Why Choose Tour connect?
+          <h3 className="text-2xl font-bold text-foreground mb-3">
+            {t("title")}
           </h3>
-          <p className="text-muted-foreground">
-            Empowering tour guides and drivers with the tools they need to succeed
-          </p>
+          <p className="text-muted-foreground">{t("subtitle")}</p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
             <motion.div
-              key={benefit.title}
+              key={benefit.titleKey}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -60,10 +60,10 @@ export default function Benefits() {
             >
               <div className="text-4xl mb-4">{benefit.icon}</div>
               <h4 className="text-lg font-semibold text-foreground mb-2">
-                {benefit.title}
+                {t(benefit.titleKey as any)}
               </h4>
               <p className="text-sm text-muted-foreground">
-                {benefit.description}
+                {t(benefit.descriptionKey as any)}
               </p>
             </motion.div>
           ))}
@@ -72,4 +72,3 @@ export default function Benefits() {
     </div>
   );
 }
-

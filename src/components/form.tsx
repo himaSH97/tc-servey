@@ -4,12 +4,14 @@ import { useState, type FormEvent, type ChangeEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { toast } from "sonner";
 import confetti from "canvas-confetti";
+import { useTranslations } from "next-intl";
 
 interface FormProps {
   onSuccessChange?: (success: boolean) => void;
 }
 
 export default function WaitlistForm({ onSuccessChange }: FormProps) {
+  const t = useTranslations("form");
   const [step, setStep] = useState<number>(1);
   const [formData, setFormData] = useState({
     email: "",
@@ -56,7 +58,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
     // Step 1: Email validation
     if (step === 1) {
       if (!formData.email || !isValidEmail(formData.email)) {
-        toast.error("Please enter a valid email address");
+        toast.error(t("errors.invalidEmail"));
         return;
       }
       setStep(2);
@@ -66,7 +68,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
     // Step 2: Name validation
     if (step === 2) {
       if (!formData.name.trim()) {
-        toast.error("Please enter your name");
+        toast.error(t("errors.nameRequired"));
         return;
       }
       setStep(3);
@@ -76,11 +78,11 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
     // Step 3: User type validation
     if (step === 3) {
       if (!formData.userType) {
-        toast.error("Please select what best describes you");
+        toast.error(t("errors.userTypeRequired"));
         return;
       }
       if (formData.userType === "Other" && !formData.userTypeOther.trim()) {
-        toast.error("Please specify your role");
+        toast.error(t("errors.specifyRole"));
         return;
       }
       setStep(4);
@@ -90,7 +92,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
     // Step 4: Interest validation
     if (step === 4) {
       if (!formData.interested) {
-        toast.error("Please select your level of interest");
+        toast.error(t("errors.interestRequired"));
         return;
       }
       setStep(5);
@@ -100,7 +102,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
     // Step 5: Features validation
     if (step === 5) {
       if (formData.features.length === 0) {
-        toast.error("Please select at least one feature");
+        toast.error(t("errors.featuresRequired"));
         return;
       }
       setStep(6);
@@ -110,7 +112,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
     // Step 6: Willing to pay validation
     if (step === 6) {
       if (!formData.willingToPay) {
-        toast.error("Please select an option");
+        toast.error(t("errors.optionRequired"));
         return;
       }
       setStep(7);
@@ -124,14 +126,14 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
         formData.willingToPay === "Maybe"
       ) {
         if (!formData.feeStructure) {
-          toast.error("Please select a fee structure");
+          toast.error(t("errors.feeStructureRequired"));
           return;
         }
         if (
           formData.feeStructure === "Other" &&
           !formData.feeStructureOther.trim()
         ) {
-          toast.error("Please specify your preferred fee structure");
+          toast.error(t("errors.specifyFeeStructure"));
           return;
         }
       }
@@ -146,7 +148,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
         formData.willingToPay === "Maybe"
       ) {
         if (!formData.comfortableAmount.trim()) {
-          toast.error("Please enter an amount you'd be comfortable with");
+          toast.error(t("errors.amountRequired"));
           return;
         }
       }
@@ -157,7 +159,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
     // Step 9: Likelihood validation
     if (step === 9) {
       if (!formData.likelihood) {
-        toast.error("Please rate your likelihood of using the platform");
+        toast.error(t("errors.likelihoodRequired"));
         return;
       }
       setStep(10);
@@ -195,7 +197,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
       });
 
       toast.promise(promise, {
-        loading: "Submitting your response... 🚀",
+        loading: t("toast.loading"),
         success: (data) => {
           setFormData({
             email: "",
@@ -229,19 +231,19 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
               ],
             });
           }, 100);
-          return "Thank you for your response! 🎉";
+          return t("toast.success");
         },
         error: (error) => {
           if (error === "Rate limited") {
-            return "You're doing that too much. Please try again later";
+            return t("toast.errorRateLimit");
           }
           if (error === "Email sending failed") {
-            return "Failed to send email. Please try again 😢.";
+            return t("toast.errorEmail");
           }
           if (error === "Notion insertion failed") {
-            return "Failed to save your details. Please try again 😢.";
+            return t("toast.errorNotion");
           }
-          return "An error occurred. Please try again 😢.";
+          return t("toast.errorGeneral");
         },
       });
 
@@ -296,20 +298,20 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             className="space-y-4"
           >
             <h3 className="text-lg font-semibold">
-              Welcome! Let's start with your email
+              {t("step1.title")}
             </h3>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="your@email.com"
+              placeholder={t("step1.placeholder")}
               className={inputClass}
               disabled={loading}
               required
             />
             <button type="submit" className={buttonClass} disabled={loading}>
-              Continue
+              {t("continue")}
             </button>
           </motion.div>
         );
@@ -324,19 +326,19 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">What's your name?</h3>
+            <h3 className="text-lg font-semibold">{t("step2.title")}</h3>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Your name"
+              placeholder={t("step2.placeholder")}
               className={inputClass}
               disabled={loading}
               required
             />
             <button type="submit" className={buttonClass} disabled={loading}>
-              Continue
+              {t("continue")}
             </button>
           </motion.div>
         );
@@ -351,23 +353,25 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">What best describes you?</h3>
+            <h3 className="text-lg font-semibold">{t("step3.title")}</h3>
             <div className="space-y-2">
-              {["Driver with a tourist vehicle", "Tour guide", "Both"].map(
-                (option) => (
-                  <label key={option} className={radioClass}>
-                    <input
-                      type="radio"
-                      name="userType"
-                      value={option}
-                      checked={formData.userType === option}
-                      onChange={handleChange}
-                      className="w-4 h-4 text-[#e5ff00]"
-                    />
-                    <span>{option}</span>
-                  </label>
-                )
-              )}
+              {[
+                { value: "Driver with a tourist vehicle", key: "driver" },
+                { value: "Tour guide", key: "guide" },
+                { value: "Both", key: "both" },
+              ].map((option) => (
+                <label key={option.value} className={radioClass}>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value={option.value}
+                    checked={formData.userType === option.value}
+                    onChange={handleChange}
+                    className="w-4 h-4 text-[#e5ff00]"
+                  />
+                  <span>{t(`step3.options.${option.key}` as any)}</span>
+                </label>
+              ))}
               <label className={radioClass}>
                 <input
                   type="radio"
@@ -377,7 +381,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                   onChange={handleChange}
                   className="w-4 h-4 text-[#e5ff00]"
                 />
-                <span>Other</span>
+                <span>{t("step3.options.other")}</span>
               </label>
               {formData.userType === "Other" && (
                 <input
@@ -385,13 +389,13 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                   name="userTypeOther"
                   value={formData.userTypeOther}
                   onChange={handleChange}
-                  placeholder="Please specify"
+                  placeholder={t("step3.placeholderOther")}
                   className={inputClass}
                 />
               )}
             </div>
             <button type="submit" className={buttonClass} disabled={loading}>
-              Continue
+              {t("continue")}
             </button>
           </motion.div>
         );
@@ -407,30 +411,29 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             className="space-y-4"
           >
             <h3 className="text-lg font-semibold">
-              Would you be interested in using an online platform that connects
-              you with tourists?
+              {t("step4.title")}
             </h3>
             <div className="space-y-2">
               {[
-                "Yes, definitely",
-                "Maybe, depends on the details",
-                "Not interested",
+                { value: "Yes, definitely", key: "yes" },
+                { value: "Maybe, depends on the details", key: "maybe" },
+                { value: "Not interested", key: "no" },
               ].map((option) => (
-                <label key={option} className={radioClass}>
+                <label key={option.value} className={radioClass}>
                   <input
                     type="radio"
                     name="interested"
-                    value={option}
-                    checked={formData.interested === option}
+                    value={option.value}
+                    checked={formData.interested === option.value}
                     onChange={handleChange}
                     className="w-4 h-4 text-[#e5ff00]"
                   />
-                  <span>{option}</span>
+                  <span>{t(`step4.options.${option.key}` as any)}</span>
                 </label>
               ))}
             </div>
             <button type="submit" className={buttonClass} disabled={loading}>
-              Continue
+              {t("continue")}
             </button>
           </motion.div>
         );
@@ -446,25 +449,25 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             className="space-y-4"
           >
             <h3 className="text-lg font-semibold">
-              What features would be most useful to you? (Select all that apply)
+              {t("step5.title")}
             </h3>
             <div className="space-y-2">
               {[
-                "Tourist ride bookings",
-                "Tour guide bookings",
-                "Real-time trip requests",
-                "Ability to set my own prices",
-                "Ratings and reviews",
-                "Secure in-app payments",
+                { value: "Tourist ride bookings", key: "rides" },
+                { value: "Tour guide bookings", key: "tours" },
+                { value: "Real-time trip requests", key: "realtime" },
+                { value: "Ability to set my own prices", key: "pricing" },
+                { value: "Ratings and reviews", key: "ratings" },
+                { value: "Secure in-app payments", key: "payments" },
               ].map((feature) => (
-                <label key={feature} className={radioClass}>
+                <label key={feature.value} className={radioClass}>
                   <input
                     type="checkbox"
-                    checked={formData.features.includes(feature)}
-                    onChange={() => handleCheckboxChange(feature)}
+                    checked={formData.features.includes(feature.value)}
+                    onChange={() => handleCheckboxChange(feature.value)}
                     className="w-4 h-4 text-[#e5ff00]"
                   />
-                  <span>{feature}</span>
+                  <span>{t(`step5.options.${feature.key}` as any)}</span>
                 </label>
               ))}
               <label className={radioClass}>
@@ -474,7 +477,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                   onChange={() => handleCheckboxChange("Other")}
                   className="w-4 h-4 text-[#e5ff00]"
                 />
-                <span>Other</span>
+                <span>{t("step5.options.other")}</span>
               </label>
               {formData.features.includes("Other") && (
                 <input
@@ -482,13 +485,13 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                   name="featuresOther"
                   value={formData.featuresOther}
                   onChange={handleChange}
-                  placeholder="Please specify"
+                  placeholder={t("step3.placeholderOther")}
                   className={inputClass}
                 />
               )}
             </div>
             <button type="submit" className={buttonClass} disabled={loading}>
-              Continue
+              {t("continue")}
             </button>
           </motion.div>
         );
@@ -504,26 +507,29 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             className="space-y-4"
           >
             <h3 className="text-lg font-semibold">
-              If the platform brings you customers, would you be willing to pay
-              a fee for each confirmed booking?
+              {t("step6.title")}
             </h3>
             <div className="space-y-2">
-              {["Yes", "Maybe, depends on the fee", "No"].map((option) => (
-                <label key={option} className={radioClass}>
+              {[
+                { value: "Yes", key: "yes" },
+                { value: "Maybe, depends on the fee", key: "maybe" },
+                { value: "No", key: "no" },
+              ].map((option) => (
+                <label key={option.value} className={radioClass}>
                   <input
                     type="radio"
                     name="willingToPay"
-                    value={option}
-                    checked={formData.willingToPay === option}
+                    value={option.value}
+                    checked={formData.willingToPay === option.value}
                     onChange={handleChange}
                     className="w-4 h-4 text-[#e5ff00]"
                   />
-                  <span>{option}</span>
+                  <span>{t(`step6.options.${option.key}` as any)}</span>
                 </label>
               ))}
             </div>
             <button type="submit" className={buttonClass} disabled={loading}>
-              Continue
+              {t("continue")}
             </button>
           </motion.div>
         );
@@ -544,24 +550,24 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             className="space-y-4"
           >
             <h3 className="text-lg font-semibold">
-              What fee structure feels fair to you?
+              {t("step7.title")}
             </h3>
             <div className="space-y-2">
               {[
-                "Flat fee per booking (e.g., Rs. 500)",
-                "Percentage of the booking value (e.g., 10%)",
-                "Monthly subscription",
+                { value: "Flat fee per booking (e.g., Rs. 500)", key: "flat" },
+                { value: "Percentage of the booking value (e.g., 10%)", key: "percentage" },
+                { value: "Monthly subscription", key: "subscription" },
               ].map((option) => (
-                <label key={option} className={radioClass}>
+                <label key={option.value} className={radioClass}>
                   <input
                     type="radio"
                     name="feeStructure"
-                    value={option}
-                    checked={formData.feeStructure === option}
+                    value={option.value}
+                    checked={formData.feeStructure === option.value}
                     onChange={handleChange}
                     className="w-4 h-4 text-[#e5ff00]"
                   />
-                  <span>{option}</span>
+                  <span>{t(`step7.options.${option.key}` as any)}</span>
                 </label>
               ))}
               <label className={radioClass}>
@@ -573,7 +579,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                   onChange={handleChange}
                   className="w-4 h-4 text-[#e5ff00]"
                 />
-                <span>Other</span>
+                <span>{t("step7.options.other")}</span>
               </label>
               {formData.feeStructure === "Other" && (
                 <input
@@ -581,13 +587,13 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                   name="feeStructureOther"
                   value={formData.feeStructureOther}
                   onChange={handleChange}
-                  placeholder="Please specify"
+                  placeholder={t("step3.placeholderOther")}
                   className={inputClass}
                 />
               )}
             </div>
             <button type="submit" className={buttonClass} disabled={loading}>
-              Continue
+              {t("continue")}
             </button>
           </motion.div>
         );
@@ -608,20 +614,19 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             className="space-y-4"
           >
             <h3 className="text-lg font-semibold">
-              What percentage or amount would you personally be comfortable
-              paying?
+              {t("step8.title")}
             </h3>
             <input
               type="text"
               name="comfortableAmount"
               value={formData.comfortableAmount}
               onChange={handleChange}
-              placeholder="e.g., Rs. 500 or 10%"
+              placeholder={t("step8.placeholder")}
               className={inputClass}
               disabled={loading}
             />
             <button type="submit" className={buttonClass} disabled={loading}>
-              Continue
+              {t("continue")}
             </button>
           </motion.div>
         );
@@ -637,11 +642,10 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             className="space-y-4"
           >
             <h3 className="text-lg font-semibold">
-              On a scale of 1 to 5, how likely are you to actually use this
-              platform if it works well?
+              {t("step9.title")}
             </h3>
             <p className="text-sm text-muted-foreground">
-              1 = not at all likely, 5 = extremely likely
+              {t("step9.subtitle")}
             </p>
             <div className="space-y-2">
               {[1, 2, 3, 4, 5].map((num) => (
@@ -659,7 +663,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
               ))}
             </div>
             <button type="submit" className={buttonClass} disabled={loading}>
-              Continue
+              {t("continue")}
             </button>
           </motion.div>
         );
@@ -675,14 +679,14 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             className="space-y-4"
           >
             <h3 className="text-lg font-semibold">
-              Any additional comments, concerns, or suggestions?
+              {t("step10.title")}
             </h3>
-            <p className="text-sm text-muted-foreground">This is optional</p>
+            <p className="text-sm text-muted-foreground">{t("step10.subtitle")}</p>
             <textarea
               name="additionalComments"
               value={formData.additionalComments}
               onChange={handleChange}
-              placeholder="Share your thoughts..."
+              placeholder={t("step10.placeholder")}
               className={inputClass + " min-h-[120px] resize-none"}
               disabled={loading}
             />
@@ -711,10 +715,10 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     />
                   </svg>
-                  Submitting...
+                  {t("submitting")}
                 </span>
               ) : (
-                "Submit"
+                t("submit")
               )}
             </button>
           </motion.div>
@@ -735,20 +739,20 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
           transition={{ duration: 0.3 }}
         >
           <p className="text-center text-lg">
-            Thank you for your interest! We'll be in touch soon.
+            {t("success.message")}
           </p>
           <button
             onClick={resetForm}
             className="bg-[#e5ff00] text-black px-6 py-2 rounded-[12] font-semibold hover:bg-opacity-90 transition-all"
             type="button"
           >
-            Submit another response
+            {t("success.button")}
           </button>
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit} className="relative">
           <div className="mb-4 flex justify-between items-center text-sm text-muted-foreground">
-            <span>Step {step} of 10</span>
+            <span>{t("step")} {step} {t("of")} 10</span>
             <div className="flex space-x-1">
               {[...Array(10)].map((_, i) => (
                 <div
