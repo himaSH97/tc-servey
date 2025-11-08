@@ -16,27 +16,6 @@ export default function Header() {
         scrolled &&
           "bg-background/50 md:bg-transparent md:backdrop-blur-none backdrop-blur-sm"
       )}
-    >
-      <Link href="#" className="cursor-pointer">
-        <Button variant="secondary">
-          <NotionLogo />
-          Notion DB Sample
-        </Button>
-      </Link>
-
-      <div className="flex items-center gap-2">
-        <Link
-          href="https://github.com/new?template_name=Waitly&template_owner=Idee8"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cursor-pointer"
-        >
-          <Button variant="secondary">
-            <GithubLogo />
-            Use this template
-          </Button>
-        </Link>
-      </div>
-    </header>
+    ></header>
   );
 }

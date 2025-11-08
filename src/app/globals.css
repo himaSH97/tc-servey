@@ -116,7 +116,37 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   body {
     @apply bg-background text-foreground font-sans;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  /* Performance optimizations */
+  input, textarea, select, button {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Smooth scrolling for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.552 0.016 285.938 / 0.3);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.552 0.016 285.938 / 0.5);
   }
 }
