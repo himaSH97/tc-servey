@@ -16,6 +16,8 @@ export default function Header() {
         scrolled &&
           "bg-background/50 md:bg-transparent md:backdrop-blur-none backdrop-blur-sm"
       )}
-    ></header>
+    >
+      <h1 className="text-xl font-bold">Tour connect</h1>
+    </header>
   );
 }
