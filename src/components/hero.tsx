@@ -16,17 +16,13 @@ export default function Hero({ waitlistPeople }: { waitlistPeople: number }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const t = useTranslations("hero");
 
-  const scrollToBenefits = () => {
-    const benefitsSection = document.getElementById("benefits-section");
-    if (benefitsSection) {
-      benefitsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   return (
     <div className="flex flex-col items-center justify-center gap-6">
       <div className="flex flex-col items-center justify-center gap-6 ">
-        <Logo />
+        <div className="scale-25 w-fit -m-[12.5%]">
+          <Logo />
+        </div>
+
         <div className="flex items-center gap-4 rounded-full border border-border px-4 py-1 relative">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
