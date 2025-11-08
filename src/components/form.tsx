@@ -280,11 +280,11 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
 
   const renderStep = () => {
     const inputClass =
-      "w-full bg-background border border-border text-foreground px-4 py-3 rounded-[12] focus:outline-1 transition-all duration-200 focus:outline-offset-4 focus:outline-[#e5ff00]";
+      "w-full bg-background border border-border text-foreground px-3 sm:px-4 py-2.5 sm:py-3 rounded-[12] focus:outline-1 transition-all duration-200 focus:outline-offset-4 focus:outline-[#e5ff00] text-sm sm:text-base";
     const radioClass =
-      "flex items-center space-x-3 p-3 border border-border rounded-[12] hover:border-[#e5ff00] transition-colors duration-200 cursor-pointer";
+      "flex items-center space-x-2 sm:space-x-3 p-2.5 sm:p-3 border border-border rounded-[12] hover:border-[#e5ff00] transition-colors duration-200 cursor-pointer text-sm sm:text-base";
     const buttonClass =
-      "w-full font-semibold bg-[#e5ff00] text-black px-5 py-3 rounded-[12] hover:bg-opacity-90 transition-opacity duration-200 disabled:opacity-50";
+      "w-full font-semibold bg-[#e5ff00] text-black px-4 sm:px-5 py-2.5 sm:py-3 rounded-[12] hover:bg-opacity-90 transition-opacity duration-200 disabled:opacity-50 text-sm sm:text-base";
 
     switch (step) {
       case 1:
@@ -297,7 +297,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-base sm:text-lg font-semibold">
               {t("step1.title")}
             </h3>
             <input
@@ -326,7 +326,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">{t("step2.title")}</h3>
+            <h3 className="text-base sm:text-lg font-semibold">{t("step2.title")}</h3>
             <input
               type="text"
               name="name"
@@ -353,7 +353,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">{t("step3.title")}</h3>
+            <h3 className="text-base sm:text-lg font-semibold">{t("step3.title")}</h3>
             <div className="space-y-2">
               {[
                 { value: "Driver with a tourist vehicle", key: "driver" },
@@ -410,7 +410,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-base sm:text-lg font-semibold">
               {t("step4.title")}
             </h3>
             <div className="space-y-2">
@@ -448,7 +448,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-base sm:text-lg font-semibold">
               {t("step5.title")}
             </h3>
             <div className="space-y-2">
@@ -506,7 +506,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-base sm:text-lg font-semibold">
               {t("step6.title")}
             </h3>
             <div className="space-y-2">
@@ -549,7 +549,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-base sm:text-lg font-semibold">
               {t("step7.title")}
             </h3>
             <div className="space-y-2">
@@ -613,7 +613,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-base sm:text-lg font-semibold">
               {t("step8.title")}
             </h3>
             <input
@@ -641,7 +641,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-base sm:text-lg font-semibold">
               {t("step9.title")}
             </h3>
             <p className="text-sm text-muted-foreground">
@@ -678,7 +678,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-base sm:text-lg font-semibold">
               {t("step10.title")}
             </h3>
             <p className="text-sm text-muted-foreground">{t("step10.subtitle")}</p>
@@ -733,17 +733,17 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
     <div className="w-full relative" style={{ willChange: "auto" }}>
       {success ? (
         <motion.div
-          className="p-6 flex flex-col justify-center items-center space-y-4"
+          className="p-4 sm:p-6 flex flex-col justify-center items-center space-y-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <p className="text-center text-lg">
+          <p className="text-center text-base sm:text-lg">
             {t("success.message")}
           </p>
           <button
             onClick={resetForm}
-            className="bg-[#e5ff00] text-black px-6 py-2 rounded-[12] font-semibold hover:bg-opacity-90 transition-all"
+            className="bg-[#e5ff00] text-black px-4 sm:px-6 py-2 rounded-[12] font-semibold hover:bg-opacity-90 transition-all text-sm sm:text-base"
             type="button"
           >
             {t("success.button")}
@@ -751,13 +751,13 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit} className="relative">
-          <div className="mb-4 flex justify-between items-center text-sm text-muted-foreground">
+          <div className="mb-4 flex justify-between items-center text-xs sm:text-sm text-muted-foreground">
             <span>{t("step")} {step} {t("of")} 10</span>
-            <div className="flex space-x-1">
+            <div className="flex space-x-0.5 sm:space-x-1">
               {[...Array(10)].map((_, i) => (
                 <div
                   key={i}
-                  className={`h-1 w-6 rounded-full transition-all ${
+                  className={`h-1 w-4 sm:w-6 rounded-full transition-all ${
                     i < step ? "bg-[#e5ff00]" : "bg-border"
                   }`}
                 />

@@ -21,7 +21,7 @@ export function LandingPage({ waitlistPeople }: { waitlistPeople: number }) {
         manualstart={true}
       />
 
-      <div className="flex flex-col items-center justify-center gap-6 p-4">
+      <div className="flex flex-col items-center justify-center gap-6 w-full px-2 sm:px-4">
         <Hero waitlistPeople={waitlistPeople} />
       </div>
 

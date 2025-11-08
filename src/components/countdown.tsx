@@ -112,7 +112,7 @@ export default function Countdown({
 
   return (
     <motion.div
-      className={`flex flex-col items-center p-4 rounded ${className}`}
+      className={`flex flex-col items-center p-2 sm:p-4 rounded w-full ${className}`}
       aria-label={ariaLabel}
       initial="hidden"
       animate="visible"
@@ -120,7 +120,7 @@ export default function Countdown({
       layout="position"
     >
       <motion.div
-        className="flex items-center justify-center space-x-2 md:space-x-4"
+        className="flex items-center justify-center space-x-1 sm:space-x-2 md:space-x-4"
         variants={containerVariants}
         style={{ willChange: "transform" }}
       >
@@ -129,7 +129,7 @@ export default function Countdown({
           variants={itemVariants}
         >
           <motion.span
-            className="text-lg md:text-xl lg:text-2xl"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold"
             key={`days-${timeLeft.days}`}
             initial={
               prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }
@@ -146,7 +146,7 @@ export default function Countdown({
             {timeLeft.days}
           </motion.span>
           <motion.span
-            className="text-xs uppercase tracking-wider mt-1 text-muted-foreground"
+            className="text-[10px] sm:text-xs uppercase tracking-wider mt-0.5 sm:mt-1 text-muted-foreground"
             variants={itemVariants}
           >
             Days
@@ -154,7 +154,7 @@ export default function Countdown({
         </motion.div>
 
         <motion.span
-          className="text-lg md:text-xl lg:text-2xl pb-6 text-muted-foreground"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl pb-4 sm:pb-6 text-muted-foreground"
           variants={itemVariants}
         >
           :
@@ -165,7 +165,7 @@ export default function Countdown({
           variants={itemVariants}
         >
           <motion.span
-            className="text-lg md:text-xl lg:text-2xl"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold"
             key={`hours-${timeLeft.hours}`}
             initial={
               prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }
@@ -182,7 +182,7 @@ export default function Countdown({
             {formatNumber(timeLeft.hours)}
           </motion.span>
           <motion.span
-            className="text-xs uppercase tracking-wider mt-1 text-muted-foreground"
+            className="text-[10px] sm:text-xs uppercase tracking-wider mt-0.5 sm:mt-1 text-muted-foreground"
             variants={itemVariants}
           >
             Hours
@@ -190,7 +190,7 @@ export default function Countdown({
         </motion.div>
 
         <motion.span
-          className="text-lg md:text-xl lg:text-2xl pb-6 text-muted-foreground"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl pb-4 sm:pb-6 text-muted-foreground"
           variants={itemVariants}
         >
           :
@@ -201,7 +201,7 @@ export default function Countdown({
           variants={itemVariants}
         >
           <motion.span
-            className="text-lg md:text-xl lg:text-2xl"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold"
             key={`minutes-${timeLeft.minutes}`}
             initial={
               prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }
@@ -218,7 +218,7 @@ export default function Countdown({
             {formatNumber(timeLeft.minutes)}
           </motion.span>
           <motion.span
-            className="text-xs uppercase tracking-wider mt-1 text-muted-foreground"
+            className="text-[10px] sm:text-xs uppercase tracking-wider mt-0.5 sm:mt-1 text-muted-foreground"
             variants={itemVariants}
           >
             Minutes
@@ -226,7 +226,7 @@ export default function Countdown({
         </motion.div>
 
         <motion.span
-          className="text-lg md:text-xl lg:text-2xl pb-6 text-muted-foreground"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl pb-4 sm:pb-6 text-muted-foreground"
           variants={itemVariants}
         >
           :
@@ -237,7 +237,7 @@ export default function Countdown({
           variants={itemVariants}
         >
           <motion.span
-            className="text-lg md:text-xl lg:text-2xl"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold"
             key={`seconds-${timeLeft.seconds}`}
             initial={
               prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }
@@ -254,7 +254,7 @@ export default function Countdown({
             {formatNumber(timeLeft.seconds)}
           </motion.span>
           <motion.span
-            className="text-xs uppercase tracking-wider mt-1 text-muted-foreground"
+            className="text-[10px] sm:text-xs uppercase tracking-wider mt-0.5 sm:mt-1 text-muted-foreground"
             variants={itemVariants}
           >
             Seconds
@@ -263,7 +263,7 @@ export default function Countdown({
       </motion.div>
 
       <motion.div
-        className="flex items-center justify-center mt-4 text-xs uppercase tracking-wider"
+        className="flex items-center justify-center mt-3 sm:mt-4 text-[10px] sm:text-xs uppercase tracking-wider px-2 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{
           opacity: 1,
@@ -276,7 +276,7 @@ export default function Countdown({
         style={{ willChange: "transform, opacity" }}
       >
         <svg
-          className="w-4 h-4 mr-1"
+          className="w-3 h-3 sm:w-4 sm:h-4 mr-1"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           color="#7E7E7E"

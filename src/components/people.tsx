@@ -63,15 +63,15 @@ export default function People({
 
 	return (
 		<motion.div
-			className={`flex items-center justify-center gap-2 py-2 px-4 ${className}`}
+			className={`flex items-center justify-center gap-2 py-2 px-2 sm:px-4 w-full ${className}`}
 			animate={controls}
 			transition={{ duration: 0.6 }}
 		>
-			<div className="flex -space-x-2 mr-3">
+			<div className="flex -space-x-2 mr-2 sm:mr-3">
 				{avatars.map((avatar, index) => (
 					<div
 						key={avatar.id}
-						className="w-8 h-8 rounded-full border-2 border-border overflow-hidden"
+						className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-border overflow-hidden"
 					>
 						<img
 							src={avatar.src}
@@ -86,7 +86,7 @@ export default function People({
 					</div>
 				))}
 			</div>
-			<motion.div className="text-sm md:text-base text-muted-foreground">
+			<motion.div className="text-xs sm:text-sm md:text-base text-muted-foreground text-center">
 				Join{" "}
 				<motion.span
 					className="font-semibold text-foreground"
