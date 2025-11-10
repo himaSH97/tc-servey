@@ -10,6 +10,7 @@
   },
   "hero": {
     "availableIn": "available in Mid",
+    "joinWaitlist": "Add your thoughts",
     "successTitle": "You're on the waitlist",
     "defaultTitle": "Join Tour connect",
     "successDescription": "You've successfully secured your spot. We'll hit you up the moment it's your turn to dive in",

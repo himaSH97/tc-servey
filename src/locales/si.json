@@ -10,6 +10,7 @@
   },
   "hero": {
     "availableIn": "ලබා ගත හැක්කේ",
+    "joinWaitlist": "ඔබේ අදහස් එක් කරන්න",
     "successTitle": "ඔබ waitlist එකේ",
     "defaultTitle": "Tour connect වෙත එක්වන්න",
     "successDescription": "ඔබ සාර්ථකව ඔබේ ස්ථානය තහවුරු කර ගෙන ඇත. අප විසින් එය ඔබට භාවිතා කිරීමේ අවස්ථාව ලැබුණු වහාම ඔබව සම්බන්ධ කරගන්නෙමු",
