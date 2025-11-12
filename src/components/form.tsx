@@ -65,12 +65,8 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
       return;
     }
 
-    // Step 2: Name validation
+    // Step 2: Name (optional, just proceed to next step)
     if (step === 2) {
-      if (!formData.name.trim()) {
-        toast.error(t("errors.nameRequired"));
-        return;
-      }
       setStep(3);
       return;
     }
@@ -326,7 +322,12 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-base sm:text-lg font-semibold">{t("step2.title")}</h3>
+            <h3 className="text-base sm:text-lg font-semibold">
+              {t("step2.title")}{" "}
+              <span className="text-sm text-muted-foreground">
+                ({t("step2.optional")})
+              </span>
+            </h3>
             <input
               type="text"
               name="name"
@@ -335,7 +336,6 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
               placeholder={t("step2.placeholder")}
               className={inputClass}
               disabled={loading}
-              required
             />
             <button type="submit" className={buttonClass} disabled={loading}>
               {t("continue")}
@@ -353,7 +353,9 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             transition={{ duration: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-base sm:text-lg font-semibold">{t("step3.title")}</h3>
+            <h3 className="text-base sm:text-lg font-semibold">
+              {t("step3.title")}
+            </h3>
             <div className="space-y-2">
               {[
                 { value: "Driver with a tourist vehicle", key: "driver" },
@@ -555,7 +557,10 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             <div className="space-y-2">
               {[
                 { value: "Flat fee per booking (e.g., Rs. 500)", key: "flat" },
-                { value: "Percentage of the booking value (e.g., 10%)", key: "percentage" },
+                {
+                  value: "Percentage of the booking value (e.g., 10%)",
+                  key: "percentage",
+                },
                 { value: "Monthly subscription", key: "subscription" },
               ].map((option) => (
                 <label key={option.value} className={radioClass}>
@@ -681,7 +686,9 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
             <h3 className="text-base sm:text-lg font-semibold">
               {t("step10.title")}
             </h3>
-            <p className="text-sm text-muted-foreground">{t("step10.subtitle")}</p>
+            <p className="text-sm text-muted-foreground">
+              {t("step10.subtitle")}
+            </p>
             <textarea
               name="additionalComments"
               value={formData.additionalComments}
@@ -752,7 +759,9 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
       ) : (
         <form onSubmit={handleSubmit} className="relative">
           <div className="mb-4 flex justify-between items-center text-xs sm:text-sm text-muted-foreground">
-            <span>{t("step")} {step} {t("of")} 10</span>
+            <span>
+              {t("step")} {step} {t("of")} 10
+            </span>
             <div className="flex space-x-0.5 sm:space-x-1">
               {[...Array(10)].map((_, i) => (
                 <div
